@@ -35,6 +35,6 @@ private:
     int imgWidth;
     int imgHeight;
     yarp::os::BufferedPort<yarp::sig::ImageOf<yarp::sig::PixelRgb> > outPort;   // output port
-    std::vector<PainterThread*> painters;
+    std::vector<PainterThread*> painters; // container for painters
 };
 

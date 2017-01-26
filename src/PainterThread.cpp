@@ -21,7 +21,9 @@ PainterThread::~PainterThread() { }
 
 
 void PainterThread::run() {
+    // loop until thread is running
     while(!isStopping()) {        
+        // wait to start the proccessing
         semStart.wait();
         if(interrupted) {
             semDone.post();
@@ -34,7 +36,8 @@ void PainterThread::run() {
                              Random::uniform(0, 255));
               addRectangleOutline(*image, color, x+w/2, y+h/2, i, j);
           }
-        }        
+        }
+        // let other know the thread already proccessed
         semDone.post();
     }
 }
@@ -46,7 +49,8 @@ void PainterThread::paint(yarp::sig::ImageOf<yarp::sig::PixelRgb>& image,
     PainterThread::x = x;
     PainterThread::y = y;
     PainterThread::w = w;
-    PainterThread::h = h;    
+    PainterThread::h = h;
+    // signla the thread to start proccessing
     semStart.post();
 }
 
@@ -55,6 +59,7 @@ void PainterThread::wait() {
 }
 
 void PainterThread::interrupt() {
+    // interrupt the current proccessing/waiting acctions
     interrupted = true;
     semStart.post();
 }

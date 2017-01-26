@@ -69,7 +69,9 @@ bool PainterModule::updateModule() {
     img.resize(imgWidth, imgHeight);
 
     double t1 = Time::now();
+
     // calling paint and running the threads
+    // devide image regions for each thread
     for(int i=0; i<threadsCount; i++) {
         int xi = i * imgWidth/threadsCount;
         painters[i]->paint(img, xi, 0, imgWidth/threadsCount, imgHeight);
@@ -79,7 +81,9 @@ bool PainterModule::updateModule() {
     for(int i=0; i<threadsCount; i++)
         painters[i]->wait();
 
-    yInfo()<<" Proccessing time "<<(Time::now()-t1)*1000.0<<"ms";
+    // print the total proccessing time
+    yInfo()<<"Proccessing time "<<(Time::now()-t1)*1000.0<<"ms";
+
     // write the image to the port
     outPort.write();
     return true;
@@ -95,7 +99,7 @@ bool PainterModule::interruptModule() {
 
 
 bool PainterModule::close() {
-    yInfo()<<"closing PainterModule";
+    yInfo()<<"Closing PainterModule";
     for(int i=0; i<painters.size(); i++) {
         painters[i]->stop();
         delete painters[i];
