@@ -34,5 +34,41 @@ the `make install` will install your module (binary, xml files, etc) in the icub
 ```
 $ yarpmanager
 ```
+you should be able to see the following output on the `yarpview`: 
 
-# Testing the tutorial application
+![module](/misc/threads_1.png)
+
+While the module is running, right click on the `tutorial_yarp-multithreading` and *attch to stdout* to see the messages printed by the module. Alternatively you can run the `yarplogger` and monitors the printed messages there. The module continuously print the total processing time to create (paint) the image. 
+
+```
+$ tutorial_yarp-multithreading --threads 1 --width 320 --height 240
+[INFO]Processing time  37.38 ms 
+[INFO]Processing time  37.303 ms 
+...
+```
+
+**Running `tutorial_yarp-multithreading` with two threads**
+Stop the module, duble click on the paramaters and change the `--threads` param to `--threads 2`. Or simply run it from the terminal: 
+
+```
+$ tutorial_yarp-multithreading --threads 2 --width 320 --height 240
+[INFO]Processing time  16.5989 ms 
+[INFO]Processing time  16.8562 ms 
+...
+```
+
+![module](/misc/threads_2.png)
+
+**Running `tutorial_yarp-multithreading` with four threads**
+Stop the module, duble click on the paramaters and change the `--threads` param to `--threads 4`. Or simply run it from the terminal: 
+
+```
+$ tutorial_yarp-multithreading --threads 4 --width 320 --height 240
+[INFO]Processing time  10.601 ms 
+[INFO]Processing time  10.617 ms 
+...
+```
+
+![module](/misc/threads_3.png)
+
+
