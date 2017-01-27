@@ -48,6 +48,7 @@ $ tutorial_yarp-multithreading --threads 1 --width 320 --height 240
 ```
 
 **Running `tutorial_yarp-multithreading` with two threads**
+
 Stop the module, duble click on the paramaters and change the `--threads` param to `--threads 2`. Or simply run it from the terminal: 
 
 ```
@@ -60,6 +61,7 @@ $ tutorial_yarp-multithreading --threads 2 --width 320 --height 240
 ![module](/misc/threads_2.png)
 
 **Running `tutorial_yarp-multithreading` with four threads**
+
 Stop the module, duble click on the paramaters and change the `--threads` param to `--threads 4`. Or simply run it from the terminal: 
 
 ```
