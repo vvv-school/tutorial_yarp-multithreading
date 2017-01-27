@@ -82,7 +82,7 @@ bool PainterModule::updateModule() {
         painters[i]->wait();
 
     // print the total proccessing time
-    yInfo()<<"Proccessing time "<<(Time::now()-t1)*1000.0<<"ms";
+    yInfo()<<"Processing time "<<(Time::now()-t1)*1000.0<<"ms";
 
     // write the image to the port
     outPort.write();
