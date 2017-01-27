@@ -69,6 +69,6 @@ $ tutorial_yarp-multithreading --threads 4 --width 320 --height 240
 ...
 ```
 
-![module](/misc/threads_3.png)
+![module](/misc/threads_4.png)
 
 
