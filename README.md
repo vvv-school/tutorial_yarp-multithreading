@@ -72,5 +72,12 @@ $ tutorial_yarp-multithreading --threads 4 --width 320 --height 240
 ```
 
 ![module](/misc/threads_4.png)
+# Note:
+
+this module needs to use semaphores to regulate the access of the different threads to the RF module 
+
+![module](/misc/notes_semaphore.JPG)
+
+
 
 
