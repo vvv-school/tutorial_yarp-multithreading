@@ -13,14 +13,14 @@ will guide you to the use
 
 
 # Tutorial
-In this tutorial we will develop e YARP module called `tutorial_yarp-multithreading` to produce a painted image in YARP and send it via YARP port. We will use multiple thread to take advantage of multi core CPUs for faster data processing. 
+In this tutorial we will develop a YARP module called `tutorial_yarp-multithreading` to produce a painted image in YARP and send it via YARP port. We will use multiple thread to take advantage of multi core CPUs for faster data processing. 
 
 ![module](/misc/tutorial_yarp-multithreading.png)
 
 # Build and Install the code
 Follow these steps to build and properly install your module: 
 ```
-$ cd tutotial_RFModule
+$ cd tutorial_yarp-multithreading
 $ mkdir build; cd build
 $ cmake ../
 $ make
