@@ -7,11 +7,12 @@
 #include <PainterThread.h>
 #include <yarp/os/LogStream.h>
 #include <yarp/sig/ImageDraw.h>
-#include <yarp/os/Random.h>
+#include <yarp/math/Rand.h>
 
 using namespace yarp::os;
 using namespace yarp::sig;
 using namespace yarp::sig::draw;
+using namespace yarp::math;
 
 
 PainterThread::PainterThread()
@@ -31,9 +32,9 @@ void PainterThread::run() {
         }
         for(int i=0; i<w/2; i+=1) {
           for(int j=0; j<h/2; j+=1) {
-              PixelRgb color(Random::uniform(0, 255),
-                             Random::uniform(0, 255),
-                             Random::uniform(0, 255));
+              PixelRgb color(Rand::scalar(0, 255),
+                             Rand::scalar(0, 255),
+                             Rand::scalar(0, 255));
               addRectangleOutline(*image, color, x+w/2, y+h/2, i, j);
           }
         }
