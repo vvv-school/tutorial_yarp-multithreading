@@ -31,14 +31,14 @@ bool PainterModule::configure(yarp::os::ResourceFinder &rf) {
     }
 
     // set some paramters    
-    imgWidth = rf.check("width", Value(320)).asInt();
-    imgHeight = rf.check("height", Value(240)).asInt();
+    imgWidth = rf.check("width", Value(320)).asInt32();
+    imgHeight = rf.check("height", Value(240)).asInt32();
     yAssert(imgWidth != 0);
     yAssert(imgHeight != 0);
-    period = rf.check("framerate", Value(30.0)).asDouble();
+    period = rf.check("framerate", Value(30.0)).asFloat64();
     yAssert(period != 0);
     period = 1.0 / period;
-    threadsCount = rf.check("threads", Value(1)).asInt();
+    threadsCount = rf.check("threads", Value(1)).asInt32();
     if(threadsCount <1) {
         yError()<< "Number of threads should be >= 1)";
         return false;
