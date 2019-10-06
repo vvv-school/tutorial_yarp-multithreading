@@ -4,12 +4,11 @@
  * CopyPolicy: Released under the terms of the LGPLv2.1 or later, see LGPL.TXT
  */
 
+#include <mutex>
+#include <condition_variable>
 #include <string>
 #include <yarp/os/Thread.h>
-#include <yarp/os/Semaphore.h>
 #include <yarp/sig/Image.h>
-
-
 
 class PainterThread : public yarp::os::Thread
 {
@@ -53,7 +52,11 @@ private:
     int w;
     int h;
     bool interrupted;
-    yarp::os::Semaphore semStart;
-    yarp::os::Semaphore semDone;
+
+    std::mutex mtx_semStart;
+    std::condition_variable cv_semStart;
+
+    std::mutex mtx_semDone;
+    std::condition_variable cv_semDone;
 };
 

@@ -7,7 +7,6 @@ After doing this tutorial you will be expected to know how to write a proper mul
 
 will guide you to the use 
 - [yarp::os::Thread](http://www.yarp.it/classyarp_1_1os_1_1Thread.html)
-- [yarp::os::Semaphore](http://www.yarp.it/classyarp_1_1os_1_1Semaphore.html)
 - [yarp::sig::ImageOf<T>](http://www.yarp.it/classyarp_1_1sig_1_1ImageOf.html) 
 - etc 
 

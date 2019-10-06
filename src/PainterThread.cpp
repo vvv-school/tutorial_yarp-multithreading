@@ -9,6 +9,7 @@
 #include <yarp/sig/ImageDraw.h>
 #include <yarp/math/Rand.h>
 
+using namespace std;
 using namespace yarp::os;
 using namespace yarp::sig;
 using namespace yarp::sig::draw;
@@ -16,7 +17,7 @@ using namespace yarp::math;
 
 
 PainterThread::PainterThread()
-    : semStart(0), semDone(0), interrupted(false) { }
+    : interrupted(false) { }
 
 PainterThread::~PainterThread() { }
 
@@ -25,9 +26,10 @@ void PainterThread::run() {
     // loop until thread is running
     while(!isStopping()) {        
         // wait to start the proccessing
-        semStart.wait();
+        unique_lock<mutex> lck(mtx_semStart);
+        cv_semStart.wait(lck);
         if(interrupted) {
-            semDone.post();
+            cv_semDone.notify_all();
             return;
         }
         for(int i=0; i<w/2; i+=1) {
@@ -39,7 +41,7 @@ void PainterThread::run() {
           }
         }
         // let other know the thread already proccessed
-        semDone.post();
+        cv_semDone.notify_all();
     }
 }
 
@@ -52,15 +54,16 @@ void PainterThread::paint(yarp::sig::ImageOf<yarp::sig::PixelRgb>& image,
     PainterThread::w = w;
     PainterThread::h = h;
     // signla the thread to start proccessing
-    semStart.post();
+    cv_semStart.notify_all();
 }
 
 void PainterThread::wait() {    
-    semDone.wait();
+    unique_lock<mutex> lck(mtx_semDone);
+    cv_semDone.wait(lck);
 }
 
 void PainterThread::interrupt() {
     // interrupt the current proccessing/waiting acctions
     interrupted = true;
-    semStart.post();
+    cv_semStart.notify_all();
 }
